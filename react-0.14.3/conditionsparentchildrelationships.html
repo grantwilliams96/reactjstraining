@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/react/0.14.2/react.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/react/0.14.2/react-dom.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+
+  </head>
+  <body>
+
+    <div id="area"></div>
+    <script type="text/babel">
+      var HelloWorld = React.createClass({
+
+
+        propTypes: {
+            name: React.PropTypes.string,
+            isPerson: React.PropTypes.bool
+        },
+        //sets a default props, will override anything else that is name
+        getDefaultProps: function() {
+            return {
+              name: 'Grant'
+            }
+        },
+        render: function() {
+          var greeting = "World";
+
+          if(this.props.isPerson) {
+            greeting = (<Person name={this.props.name}/>)
+          }
+          return (
+              <h1>Hello {greeting}</h1>
+          )
+        }
+
+      });
+
+
+
+
+      var Person = React.createClass({
+
+
+        propTypes: {
+            name: React.PropTypes.string.isRequired
+        },
+        //sets a default props, will override anything else that is name
+        getDefaultProps: function() {
+            return {
+              name: 'Grant'
+            }
+        },
+        render: function() {
+          return (
+              <span>{this.props.name}</span>
+          )
+        }
+
+      });
+      ReactDOM.render(
+        //outputs my name to the div
+        <HelloWorld name="Tim" isPerson={false} />,
+        document.getElementById('area')
+      );
+    </script>
+  </body>
+</html>
